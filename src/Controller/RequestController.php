@@ -94,7 +94,7 @@ class RequestController implements ContainerInjectionInterface {
     }
 
     $schema = $this->schemaLoader->loadSchema($this->languageManager->getCurrentLanguage());
-    $variables = $variables ? (array) json_decode($variables) : NULL;
+    $variables = $variables ? is_string($variables) ? (array) json_decode($variables) : (array) $variables : NULL;
     $result = $this->graphql->execute($schema, $query, NULL, $variables, $operation);
 
     $response = new JsonResponse($result);
