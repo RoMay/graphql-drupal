@@ -5,10 +5,7 @@ namespace Drupal\graphql\Controller;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\graphql\SchemaLoader;
-use Drupal\graphql\SchemaProviderInterface;
 use Fubhy\GraphQL\GraphQL;
-use Fubhy\GraphQL\Schema;
-use Fubhy\GraphQL\Type\Definition\Types\ObjectType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,7 +67,7 @@ class RequestController implements ContainerInjectionInterface {
   /**
    * Handles GraphQL requests.
    *
-   * @param \Symfony\Component\HttpFoundation\Request
+   * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request object.
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -100,4 +97,5 @@ class RequestController implements ContainerInjectionInterface {
     $response = new JsonResponse($result);
     return $response->setPrivate();
   }
+
 }
