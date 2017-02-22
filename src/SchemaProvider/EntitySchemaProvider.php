@@ -189,7 +189,7 @@ class EntitySchemaProvider extends SchemaProviderBase {
     }
 
     if (!empty($args['offset']) || !empty($args['limit'])) {
-      $query->range($args['offset'] ?: NULL, $args['limit'] ?: NULL);
+      $query->range($args['offset'] ?: 0, $args['limit'] ?: NULL);
     }
 
     $result = $query->execute();
