@@ -50,7 +50,7 @@ class SchemaLoader {
    */
   public function loadSchema(LanguageInterface $language) {
     if ($schema = $this->schemaCache->get($language->getId())) {
-      //return $schema->data;
+      return $schema->data;
     }
 
     $query = new ObjectType('Root', $this->schemaProvider->getQuerySchema());
@@ -63,7 +63,7 @@ class SchemaLoader {
 
     // Cache the generated schema in the configured cache backend.
     $expire = Cache::PERMANENT;
-    $tags  = ['views', 'entity_field_info', 'entity_bundles'];
+    $tags = array_unique($this->schemaProvider->getCacheTags() ?: []);
     $cid = $language->getId();
     $this->schemaCache->set($cid, $schema, $expire, $tags);
 
